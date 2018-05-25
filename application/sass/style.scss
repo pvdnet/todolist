@@ -1,0 +1,36 @@
+@import "variables";
+@import "header";
+@import "login-box";
+@import "footer";
+
+.container {
+	border: 1px solid $extra-color;
+	border-radius: 3px;
+	padding: 20px;
+	margin: 33px;
+
+	.feedback {
+		padding: 20px;
+		margin-bottom: 10px;
+		
+		&.success {
+			color: $color-success;
+			background-color: $color-success-bg;
+		}
+
+		&.error {
+			color: $color-error;
+			background-color: $color-error-bg;
+		}
+
+		&.info {
+			color: $color-info;
+			background-color: $color-info-bg;
+		}
+	}
+
+	span {
+		font-weight: bold;
+	}
+}
+

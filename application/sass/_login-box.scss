@@ -1,0 +1,121 @@
+%input {
+	font-family: $input-font;
+	color: $color-text;
+	display: block;
+	width: 100%;
+	max-width: 450px;
+	padding: 15px 20px;
+	margin-bottom: 10px;
+	box-sizing: border-box;
+}
+
+%xxx-box {
+	display: table-cell;
+	margin: 0;
+	color: $color-text;
+	background-color: $color-background;
+	padding: 20px 50px 40px;
+	width: 33%;
+	box-sizing: border-box;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+
+.login-page-box {
+	display: table;
+	width: 100%;
+
+	.table-wrapper {
+		display: table-row;
+
+		h2 {
+			color: $color-f5f5f5;
+		}
+
+		input[type=text] {
+			@extend %input;
+		}
+
+		input[type=password] {
+			@extend %input;
+		}
+
+		input[type=email] {
+			@extend %input;
+		}
+
+		select {
+			@extend %input;
+		}
+
+		input[type=submit] {
+			@extend %input;
+			background-color: transparant;
+			border: 2px solid $color-text;
+			text-align: center;
+			text-transform: uppercase;
+			cursor: pointer;
+
+			&:hover {
+				color: $color-f5f5f5;
+				border-color: $color-black;
+				background-color: $color-black;
+			}
+		}
+
+		.login-box {
+			@extend %xxx-box;
+
+			.remember-me-label {
+				display: block;
+				margin-bottom: 10px;
+			}
+
+			.link-register-new-account {
+				display: block;
+				text-align: left;
+				float: left;
+
+				a {
+					color: $color-text;
+					text-decoration: none;
+
+					&:hover {
+						text-decoration: underline;
+					}
+
+					&:visited {
+						color: $color-text;
+						text-decoration: none;
+					}
+				}
+			}
+
+			.link-forgot-my-password {
+				display: block;
+				text-align: left;
+				float: left;
+
+				a {
+					color: $color-text;
+					text-decoration: none;
+
+					&:hover {
+						text-decoration: underline;
+					}
+
+					&:visited {
+						color: $color-text;
+						text-decoration: none;
+					}
+				}
+			}
+		}
+
+		.register-box {
+			@extend %xxx-box;
+
+			background-color: $color-black;
+		}
+	}
+}
