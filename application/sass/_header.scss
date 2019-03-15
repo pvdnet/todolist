@@ -1,11 +1,9 @@
 .logo {
     width: 200px;
     height: 100px;
-    margin: 20px 30px;
 }
 
 .navigation {
-	margin-left: 33px;
 
 	a {
 		display: inline-block;
@@ -17,7 +15,7 @@
 		font-weight: bold;
 		border: 1px solid $color-text;
 		color: $color-text;
-		background: transparant;
+		background: #fff;
 
 		&:hover {
 		background: $color-text;

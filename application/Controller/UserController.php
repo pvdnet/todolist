@@ -33,10 +33,4 @@ class UserController extends Controller {
 	public function league() {
 		$this->render('user/league');
 	}
-
-	public function getInfo() {
-		$user = Session::get('user');
-
-		return $user;
-	}
 }

@@ -12,38 +12,44 @@
 
     <!-- CSS -->
     <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-    <!-- logo, check the CSS file for more info how the logo "image" is shown -->
-    <div class="logo">To-do-list.Local</div>
+    <div class="container">
+        <!-- logo, check the CSS file for more info how the logo "image" is shown -->
+        <div class="logo">To-do-list.Local</div>
 
-    <!-- navigation -->
-    <div class="navigation">
-        <a href="<?php echo URL; ?>">home</a>
-    
-        <?php 
-        if($this->loggedIn()) {  //User is logged in. Show logged in menu.
-        ?>
+        <!-- navigation -->
+        <div class="navigation">
+            <a href="<?php echo URL; ?>">home</a>
+            <a href="<?php echo URL; ?>task/index">Lists</a>
 
-        <?php 
-        }
-        ?>
+            <?php 
+            if($this->loggedIn()) {  //User is logged in. Show logged in menu.
+            ?>
 
-        <div class="right">
-            <ul>
-                <li>
-                    <?php if($this->loggedIn()) : ?>
-                        <a href="<?php echo URL; ?>user/index">My account</a>
-                        <ul class="navigation-submenu">
-                            <li>
-                                <a href="<?php echo URL; ?>login/logout">Logout</a>
-                            </li>
-                        </ul>
-                    <?php else : ?>
-                        <a href="<?php echo URL; ?>login">Login/register</a>
-                    <?php endif ?>
-                </li>
-            </ul>
+            <?php 
+            }
+            ?>
+
+            <div class="right">
+                <ul>
+                    <li>
+                        <?php if($this->loggedIn()) : ?>
+                            <a href="<?php echo URL; ?>user/index">My account</a>
+                            <ul class="navigation-submenu">
+                                <li>
+                                    <a href="<?php echo URL; ?>login/logout">Logout</a>
+                                </li>
+                            </ul>
+                        <?php else : ?>
+                            <a href="<?php echo URL; ?>login">Login/register</a>
+                        <?php endif ?>
+                    </li>
+                </ul>
+            </div>
+            
         </div>
-        
     </div>
+    

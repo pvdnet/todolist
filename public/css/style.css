@@ -1,42 +1,41 @@
 .logo {
   width: 200px;
-  height: 100px;
-  margin: 20px 30px; }
+  height: 100px; }
 
-.navigation {
-  margin-left: 33px; }
-  .navigation a {
-    display: inline-block;
-    padding: 8px 12px;
-    border-radius: 3px;
-    text-decoration: none;
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: bold;
-    border: 1px solid #666666;
-    color: #666666;
-    background: transparant; }
-    .navigation a:hover {
-      background: #666666;
-      color: black; }
-  .navigation ul {
-    list-style: none;
-    margin: 0;
-    padding: 0; }
-  .navigation .right {
-    float: right;
-    margin-right: 33px; }
-    .navigation .right a {
-      width: 150px;
-      text-align: center; }
-    .navigation .right li:hover .navigation-submenu {
-      display: block;
-      position: absolute;
-      float: left; }
-    .navigation .right .navigation-submenu {
-      display: none; }
+.navigation a {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: 1px solid #666666;
+  color: #666666;
+  background: #fff; }
+  .navigation a:hover {
+    background: #666666;
+    color: black; }
 
-.login-page-box .table-wrapper input[type=text], .login-page-box .table-wrapper input[type=password], .login-page-box .table-wrapper input[type=email], .login-page-box .table-wrapper select, .login-page-box .table-wrapper input[type=submit] {
+.navigation ul {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+.navigation .right {
+  float: right;
+  margin-right: 33px; }
+  .navigation .right a {
+    width: 150px;
+    text-align: center; }
+  .navigation .right li:hover .navigation-submenu {
+    display: block;
+    position: absolute;
+    float: left; }
+  .navigation .right .navigation-submenu {
+    display: none; }
+
+.login-page-box .table-wrapper input[type=text], .login-page-box .table-wrapper input[type=password], .login-page-box .table-wrapper input[type=email], .login-page-box .table-wrapper select, .login-page-box .table-wrapper .login-box input[type=submit], .login-page-box .table-wrapper .register-box input[type=submit] {
   font-family: Arial, sans-serif;
   color: #666666;
   display: block;
@@ -44,7 +43,8 @@
   max-width: 450px;
   padding: 15px 20px;
   margin-bottom: 10px;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  transition: .3s; }
 
 .login-page-box .table-wrapper .login-box, .login-page-box .table-wrapper .register-box {
   display: table-cell;
@@ -64,31 +64,19 @@
     display: table-row; }
     .login-page-box .table-wrapper h2 {
       color: #f5f5f5; }
-    .login-page-box .table-wrapper input[type=submit] {
+    .login-page-box .table-wrapper .login-box .remember-me-label {
+      display: block;
+      margin-bottom: 10px; }
+    .login-page-box .table-wrapper .login-box input[type=submit] {
       background-color: transparant;
       border: 2px solid #666666;
       text-align: center;
       text-transform: uppercase;
       cursor: pointer; }
-      .login-page-box .table-wrapper input[type=submit]:hover {
+      .login-page-box .table-wrapper .login-box input[type=submit]:hover {
         color: #f5f5f5;
         border-color: #000;
         background-color: #000; }
-    .login-page-box .table-wrapper .login-box .remember-me-label {
-      display: block;
-      margin-bottom: 10px; }
-    .login-page-box .table-wrapper .login-box .link-register-new-account {
-      display: block;
-      text-align: left;
-      float: left; }
-      .login-page-box .table-wrapper .login-box .link-register-new-account a {
-        color: #666666;
-        text-decoration: none; }
-        .login-page-box .table-wrapper .login-box .link-register-new-account a:hover {
-          text-decoration: underline; }
-        .login-page-box .table-wrapper .login-box .link-register-new-account a:visited {
-          color: #666666;
-          text-decoration: none; }
     .login-page-box .table-wrapper .login-box .link-forgot-my-password {
       display: block;
       text-align: left;
@@ -103,6 +91,16 @@
           text-decoration: none; }
     .login-page-box .table-wrapper .register-box {
       background-color: #000; }
+      .login-page-box .table-wrapper .register-box input[type=submit] {
+        background-color: transparant;
+        border: 2px solid #666666;
+        text-align: center;
+        text-transform: uppercase;
+        cursor: pointer; }
+        .login-page-box .table-wrapper .register-box input[type=submit]:hover {
+          color: #f5f5f5;
+          border-color: #000;
+          background-color: #999999; }
 
 .footer {
   border-radius: 3px;
@@ -112,10 +110,7 @@
   font-size: 11px; }
 
 .container {
-  border: 1px solid #454545;
-  border-radius: 3px;
-  padding: 20px;
-  margin: 33px; }
+  margin-bottom: 15px; }
   .container .feedback {
     padding: 20px;
     margin-bottom: 10px; }
