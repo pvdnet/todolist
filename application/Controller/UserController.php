@@ -23,8 +23,6 @@ class UserController extends Controller {
 		$this->user->email = $userSession['email'];
 		$this->user->accountType = $userSession['account_type'];
 		$this->user->creationDate = date('d-M-Y', $userSession['creation_time']);
-		$this->user->summonerName = (!empty($userSession['summoner_name']) ? $userSession['summoner_name'] : 'You have not yet linked your account.');
-
 	}
 
 	public function index() {

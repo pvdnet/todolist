@@ -5,7 +5,6 @@
 	 	<span>Email: </span> <?php echo $this->user->email; ?> <br />
 	 	<span>Account Type: </span> <?php echo $this->user->accountType; ?> <br />
 	 	<span>Creation Date: </span> <?php echo $this->user->creationDate; ?> <br />
-	 	<span>Summoner Name: </span> <?php echo $this->user->summonerName; ?>
 	 </p>
 
 </div>

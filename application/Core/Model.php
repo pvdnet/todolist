@@ -16,10 +16,11 @@ class Model
      */
     function __construct()
     {
+
         try {
             self::openDatabaseConnection();
         } catch (\PDOException $e) {
-            exit('Database connection could not be established.');
+            exit($e);
         }
     }
 

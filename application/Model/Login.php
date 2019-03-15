@@ -27,17 +27,7 @@ class Login extends Model {
 		}
 
 		//The query 
-		$sql = '	SELECT 	id,
-							summoner_id,
-							summoner_name,
-							name,
-							email,
-							password_hash,
-							active,
-							account_type,
-							creation_timestamp,
-							failed_logins,
-							last_failed_login
+		$sql = '	SELECT 	*
 					FROM 	users 
 					WHERE 	(name = :user_name OR email = :user_name)';
 
@@ -49,7 +39,7 @@ class Login extends Model {
 
 		//Execute sql after giving parameters a value
 		$query->execute($parameters);
-
+		
 		//Count results to see if there is a match. Name and email are unique so we need just 1 match.
 		$count = $query->rowCount();
 
@@ -72,17 +62,15 @@ class Login extends Model {
 		if(password_verify($_POST['user_password'], $user->password_hash)) {
 			//User's password is correct!
 
-			//Check if the user is active.
-			if($user->active != 1) {
-				$_SESSION['feedback_negative'][] = FEEDBACK_ACCOUNT_NOT_ACTIVATED;
-				return false;
-			}
+			//Check if the user is active. NOT YET NEEDED
+			// if($user->active != 1) {
+			// 	$_SESSION['feedback_negative'][] = FEEDBACK_ACCOUNT_NOT_ACTIVATED;
+			// 	return false;
+			// }
 
 			//User is active, write user data into session.
 			$userdata = array();
 			$userdata['id'] 			= $user->id;
-			$userdata['summoner_id'] 	= $user->summoner_id;
-			$userdata['summoner_name'] 	= $user->summoner_name;
 			$userdata['name']			= $user->name;
 			$userdata['email']			= $user->email;
 			$userdata['account_type']	= $user->account_type;

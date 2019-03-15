@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Mini</title>
+    <title>To-do list</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -15,7 +15,7 @@
 </head>
 <body>
     <!-- logo, check the CSS file for more info how the logo "image" is shown -->
-    <div class="logo"></div>
+    <div class="logo">To-do-list.Local</div>
 
     <!-- navigation -->
     <div class="navigation">
@@ -24,22 +24,17 @@
         <?php 
         if($this->loggedIn()) {  //User is logged in. Show logged in menu.
         ?>
-            <a href="<?php echo URL; ?>songs">songs</a>
+
         <?php 
         }
         ?>
 
-
-        
         <div class="right">
             <ul>
                 <li>
                     <?php if($this->loggedIn()) : ?>
                         <a href="<?php echo URL; ?>user/index">My account</a>
                         <ul class="navigation-submenu">
-                            <li>
-                                <a href="<?php echo URL; ?>user/league">League account</a>
-                            </li>
                             <li>
                                 <a href="<?php echo URL; ?>login/logout">Logout</a>
                             </li>
