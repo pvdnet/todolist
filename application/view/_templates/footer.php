@@ -14,5 +14,6 @@
 
     <!-- our JavaScript -->
     <script src="<?php echo URL; ?>js/application.js"></script>
+    <script src="<?php echo URL; ?>js/sorttable.js"></script>
 </body>
 </html>

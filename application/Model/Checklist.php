@@ -71,6 +71,16 @@ class Checklist extends Model {
         $query->execute($param);
     }
 
+    public function lastEditList($listId) {
+        $sql = "UPDATE lists
+                SET last_change = :lastChanged
+                WHERE id = :listId";
+        $query = $this->db->prepare($sql);
+        $param = array(':lastChanged' => time(), ':listId' => $listId);
+
+        $query->execute($param);
+    }
+
     public function deleteList($listId) {
         $sql = "UPDATE lists 
                 SET active = 0
@@ -78,6 +88,36 @@ class Checklist extends Model {
         $query = $this->db->prepare($sql);
         $param = array(':listID' => $listId);
 
+        $query->execute($param);
+    }
+
+    public function getTasksByList($listId) {
+        $sql = "SELECT t.id, t.name as taskName, t.description, t.duration, ts.name as status, u.name as userName
+                FROM tasks as t
+                INNER JOIN task_status as ts
+                ON t.status = ts.id
+                INNER JOIN users as u
+                ON t.user_id = u.id
+                WHERE t.active = 1
+                AND t.list_id = :listId";
+        $query = $this->db->prepare($sql);
+        $param = array(':listId' => $listId);
+
+        $query->execute($param);
+
+        return $query->fetchAll();
+    }
+
+    public function addTask($listId, $userId, $taskName, $taskDescription, $taskDuration) {
+        $sql = "INSERT INTO tasks (list_id, user_id, name, description, duration)
+                VALUES (:listId, :userId, :taskName, :taskDescription, :taskDuration)";
+        $query = $this->db->prepare($sql);
+        $param = array( ':listId' => $listId,
+                        ':userId' => $userId,
+                        ':taskName' => $taskName,
+                        ':taskDescription' => $taskDescription,
+                        ':taskDuration' => $taskDuration);
+        
         $query->execute($param);
     }
 }

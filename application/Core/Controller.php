@@ -44,9 +44,9 @@ class Controller {
 		}
 	}
 
-	public function showSession() {
+	public function showInfo($info) {
 		echo '<pre>';
-		print_r($_SESSION);
+		print_r($info);
 		echo '</pre>';
 	}
 }

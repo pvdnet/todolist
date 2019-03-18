@@ -20,7 +20,7 @@
                     <tr>
                         <td><?php echo $list->taskName; ?></td>
                         <td><?php echo $list->userName; ?></td>
-                        <td><?php echo $list->changed ?? 'Never' ?></td>
+                        <td><?php echo (($list->changed) ? date('d-M-Y G:i:s', $list->changed) : 'Never'); ?></td>
                         <td><a href="<?php echo URL; ?>checklist/view/<?php echo $list->id;?>"><i class="fas fa-angle-double-right"></i></a></td>
                     </tr>
                 <?php endforeach; ?>

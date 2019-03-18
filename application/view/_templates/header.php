@@ -24,12 +24,11 @@
         <!-- navigation -->
         <div class="navigation">
             <a href="<?php echo URL; ?>">home</a>
-            <a href="<?php echo URL; ?>checklist/index">Checklists</a>
 
             <?php 
             if($this->loggedIn()) {  //User is logged in. Show logged in menu.
             ?>
-
+                <a href="<?php echo URL; ?>checklist">Checklists</a>
             <?php 
             }
             ?>

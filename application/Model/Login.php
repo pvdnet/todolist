@@ -27,9 +27,11 @@ class Login extends Model {
 		}
 
 		//The query 
-		$sql = '	SELECT 	*
-					FROM 	users 
-					WHERE 	(name = :user_name OR email = :user_name)';
+		$sql = '	SELECT 	u.id, u.name, u.password_hash, u.email, ur.name as account_type, u.creation_timestamp, u.failed_logins, u.last_failed_login
+					FROM 	users as u
+					INNER JOIN user_roles as ur
+					ON u.account_type = ur.id
+					WHERE 	(u.name = :user_name OR u.email = :user_name)';
 
 		//Prepare sql
 		$query = $this->db->prepare($sql);
@@ -105,30 +107,30 @@ class Login extends Model {
 									':last_login_timestamp' => $last_login_timestamp);
 			$query->execute($parameters);
 
-			//If user checks 'remember me' checkbox
-			if(isset($_POST['set_remember_me_cookie'])) {
-				//Generate 64 char string
-				$char_string = hash('sha256', mt_rand());
+			// //If user checks 'remember me' checkbox
+			// if(isset($_POST['set_remember_me_cookie'])) {
+			// 	//Generate 64 char string
+			// 	$char_string = hash('sha256', mt_rand());
 
-				//Write the string into the database
-				$sql = '	UPDATE 	users 
-							SET 	rememberme_token = :rememberme_token 
-							WHERE 	id = :user_id';
+			// 	//Write the string into the database
+			// 	$sql = '	UPDATE 	users 
+			// 				SET 	rememberme_token = :rememberme_token 
+			// 				WHERE 	id = :user_id';
 
-				$query = $this->db->prepare($sql);
-				$parameters = array(	':user_id' => $user->id,
-										':rememberme_token' => $char_string);
-				$query->execute($parameters);
+			// 	$query = $this->db->prepare($sql);
+			// 	$parameters = array(	':user_id' => $user->id,
+			// 							':rememberme_token' => $char_string);
+			// 	$query->execute($parameters);
 
-				//Generate cookie string that conssists of user id, char_string and combined hash of both.
-				$cookie_first_part = $user->id . ':' . $char_string;
-				$cookie_hash = hash('sha256', $cookie_first_part);
-				$cookie = $cookie_first_part . ':' . $cookie_hash;
+			// 	//Generate cookie string that conssists of user id, char_string and combined hash of both.
+			// 	$cookie_first_part = $user->id . ':' . $char_string;
+			// 	$cookie_hash = hash('sha256', $cookie_first_part);
+			// 	$cookie = $cookie_first_part . ':' . $cookie_hash;
 
-				//Set cookie
-				setcookie('rememberme', $cookie, time() + COOKIE_RUNTIME, '/', COOKIE_DOMAIN);
+			// 	//Set cookie
+			// 	setcookie('rememberme', $cookie, time() + COOKIE_RUNTIME, '/', COOKIE_DOMAIN);
 
-			}
+			// }
 
 			//Login was succesfull so return true.
 			return true;
@@ -145,7 +147,7 @@ class Login extends Model {
 									':last_failed_login' => time());
 			$query->execute($parameters);
 
-			$_SESSION['feedback_negative'][] = FEEDBACK_WRONG_PASSWORD;
+			$_SESSION['feedback_negative'][] = FEEDBACK_LOGIN_FAILED;
 			return false;
 		}
 

@@ -31,6 +31,8 @@ require ROOT . 'vendor/autoload.php';
 // load application config (error reporting etc.)
 require APP . 'config/config.php';
 
+date_default_timezone_set("Europe/Amsterdam"); 
+
 // load application class
 use Mini\Core\Application;
 
