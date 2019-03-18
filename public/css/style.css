@@ -35,7 +35,7 @@
   .navigation .right .navigation-submenu {
     display: none; }
 
-.login-page-box .table-wrapper input[type=text], .login-page-box .table-wrapper input[type=password], .login-page-box .table-wrapper input[type=email], .login-page-box .table-wrapper select, .login-page-box .table-wrapper .login-box input[type=submit], .login-page-box .table-wrapper .register-box input[type=submit] {
+.login-page-box .table-wrapper input[type=text], .login-page-box .table-wrapper input[type=password], .login-page-box .table-wrapper input[type=email], .login-page-box .table-wrapper input[type=number], .login-page-box .table-wrapper select, .login-page-box .table-wrapper .login-box input[type=submit], .login-page-box .table-wrapper .register-box input[type=submit] {
   font-family: Arial, sans-serif;
   color: #666666;
   display: block;

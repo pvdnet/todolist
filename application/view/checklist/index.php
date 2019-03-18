@@ -12,19 +12,17 @@
                         <th>Name</th>
                         <th>Created by</th>
                         <th>Last edited</th>
-                        <th>Edit</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php foreach($this->lists as $list): ?>
-                <a href="<?php echo URL; ?>task/view/<?php echo $list->id;?>">
                     <tr>
                         <td><?php echo $list->taskName; ?></td>
                         <td><?php echo $list->userName; ?></td>
                         <td><?php echo $list->changed ?? 'Never' ?></td>
-                        <td><a href="<?php echo URL; ?>task/edit/<?php echo $list->id;?>">Edit</a></td>
+                        <td><a href="<?php echo URL; ?>checklist/view/<?php echo $list->id;?>"><i class="fas fa-angle-double-right"></i></a></td>
                     </tr>
-                </a>
                 <?php endforeach; ?>
                 </tbody>
             </table>
@@ -33,8 +31,8 @@
         <div class="register-box"> 
             <h2>Create a new List</h2>
 
-            <form action="<?php echo URL; ?>task/create" method="post">
-                <input type="text" name="task_name" placeholder="List name" tabindex="1" required />
+            <form action="<?php echo URL; ?>checklist/create" method="post">
+                <input type="text" name="list_name" placeholder="List name" tabindex="1" required />
                 <!--<input type="checkbox" name="set_remember_me_cookie" id="remember-me-checkbox" tabindex="3" />
                 <label for="remember-me-checkbox">Remember me for 2 weeks</label> -->
                 <input type="submit" class="login-submit-button" value="Create list!" tabindex="4" />

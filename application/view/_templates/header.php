@@ -14,6 +14,7 @@
     <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body>
     <div class="container">
@@ -23,7 +24,7 @@
         <!-- navigation -->
         <div class="navigation">
             <a href="<?php echo URL; ?>">home</a>
-            <a href="<?php echo URL; ?>task/index">Lists</a>
+            <a href="<?php echo URL; ?>checklist/index">Checklists</a>
 
             <?php 
             if($this->loggedIn()) {  //User is logged in. Show logged in menu.

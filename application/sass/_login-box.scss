@@ -45,6 +45,10 @@
 			@extend %input;
 		}
 
+		input[type=number] {
+			@extend %input;
+		}
+
 		select {
 			@extend %input;
 		}
