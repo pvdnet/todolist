@@ -6,7 +6,7 @@
         <div class="login-box">
             <h2>Lists</h2>
 
-            <table class="table table-striped table-dark table-hover">
+            <table class="table table-striped table-dark table-hover sortable">
                 <thead class="thead-dark">
                     <tr>
                         <th>Name</th>
@@ -21,7 +21,7 @@
                         <td><?php echo $list->taskName; ?></td>
                         <td><?php echo $list->userName; ?></td>
                         <td><?php echo (($list->changed) ? date('d-M-Y G:i:s', $list->changed) : 'Never'); ?></td>
-                        <td><a href="<?php echo URL; ?>checklist/view/<?php echo $list->id;?>"><i class="fas fa-angle-double-right"></i></a></td>
+                        <td><a href="<?php echo URL; ?>checklist/list/<?php echo $list->id;?>"><i class="fas fa-angle-double-right"></i></a></td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>

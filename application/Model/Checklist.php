@@ -84,9 +84,9 @@ class Checklist extends Model {
     public function deleteList($listId) {
         $sql = "UPDATE lists 
                 SET active = 0
-                WHERE id = :listID";
+                WHERE id = :listId";
         $query = $this->db->prepare($sql);
-        $param = array(':listID' => $listId);
+        $param = array(':listId' => $listId);
 
         $query->execute($param);
     }
@@ -118,6 +118,49 @@ class Checklist extends Model {
                         ':taskDescription' => $taskDescription,
                         ':taskDuration' => $taskDuration);
         
+        $query->execute($param);
+    }
+
+    public function getTask($taskId) {
+        $sql = "SELECT t.id as id, l.id as listId, l.name as listName, t.name as taskName, t.description, t.duration, ts.name as status, t.status as numStatus
+                FROM tasks as t
+                INNER JOIN lists as l
+                ON t.list_id = l.id
+                INNER JOIN users as u
+                ON t.user_id = u.id
+                INNER JOIN task_status as ts
+                ON t.status = ts.id
+                WHERE t.active = 1
+                AND t.id = :taskId";
+        $query = $this->db->prepare($sql);
+        $param = array(':taskId' => $taskId);
+
+        $query->execute($param);
+
+        return $query->fetch();
+    }
+
+    public function updateTask($taskId, $taskName, $taskDescription, $taskDuration, $taskStatus) {
+        $sql = 'UPDATE tasks
+                SET name = :taskName, description = :taskDescription, duration = :taskDuration, status = :taskStatus
+                WHERE id = :taskId';
+        $query = $this->db->prepare($sql);
+        $param = array( ':taskName' => $taskName,
+                        ':taskDescription' => $taskDescription,
+                        ':taskDuration' => $taskDuration,
+                        ':taskStatus' => $taskStatus,
+                        ':taskId' => $taskId);
+        
+        $query->execute($param);
+    }
+
+    public function deleteTask($taskId) {
+        $sql = "UPDATE tasks 
+                SET active = 0
+                WHERE id = :taskId";
+        $query = $this->db->prepare($sql);
+        $param = array(':taskId' => $taskId);
+
         $query->execute($param);
     }
 }

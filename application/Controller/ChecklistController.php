@@ -24,6 +24,8 @@ class ChecklistController extends Controller {
     public $singleList;
     public $singleListTasks;
     public $singleListCreator;
+    public $singleTask;
+
     public function __construct() {
         parent::__construct();
 
@@ -45,7 +47,7 @@ class ChecklistController extends Controller {
         header('location: ' . URL . 'checklist');
     }
 
-    public function view($listId) {
+    public function list($listId) {
         if(isset($listId)):
 
             $this->singleList = $this->list->getList($listId);
@@ -56,7 +58,7 @@ class ChecklistController extends Controller {
             else:
                 $this->singleListTasks = $this->list->getTasksByList($listId);
                 $this->singleListCreator = $this->list->getUserByList($this->singleList->user_id);
-                $this->render('checklist/view');
+                $this->render('checklist/list');
             endif;
         else:
             header('location: ' . URL . 'checklist');
@@ -68,7 +70,7 @@ class ChecklistController extends Controller {
             $this->list->updateList($listId, $_POST['list_name']);
             $this->list->lastEditList($listId);
             $_SESSION['feedback_positive'][] = 'Name edited.';
-            header('location: ' . URL . 'checklist/view/' . $listId);
+            header('location: ' . URL . 'checklist/list/' . $listId);
         else:
             header('location: ' . URL . 'checklist');
         endif;
@@ -92,10 +94,47 @@ class ChecklistController extends Controller {
         else:
             $_SESSION['feedback_negative'][] = 'Failed to add task';
         endif;
-        header('location: ' . URL . 'checklist/view/' . $listId);
+        header('location: ' . URL . 'checklist/list/' . $listId);
     }
 
     public function task($taskId) {
+        if(isset($taskId)):
 
+            $this->singleTask = $this->list->getTask($taskId);
+
+            if($this->singleTask == '' || $this->singleTask == null):
+                $_SESSION['feedback_negative'][] = 'This list no longer exists.';
+                header('location: ' . URL . 'checklist');
+            else:
+
+                $this->render('checklist/task');
+            endif;
+        else:
+            header('location: ' . URL . 'checklist');
+        endif;
+    }
+
+    public function taskEdit($listId, $taskId) {
+        if(isset($taskId)):
+            $this->list->updateTask($taskId, $_POST['task_name'], $_POST['task_description'], $_POST['task_duration'], $_POST['task_status']);
+            $this->list->lastEditList($listId);
+            $_SESSION['feedback_positive'][] = 'Task updated';
+            header('location: ' . URL . 'checklist/task/' . $taskId);
+        else:
+            $_SESSION['feedback_negative'][] = 'Could\'t update task';
+            header('location: ' . URL . 'checklist');
+        endif;
+    }
+
+    public function taskDelete($listId, $taskId) {
+        if(isset($taskId)):
+            $this->list->deleteTask($taskId);
+            $this->list->lastEditList($listId);
+            $_SESSION['feedback_positive'][] = 'Task deleted';
+            header('location: ' . URL . 'checklist/list/' . $listId);
+        else:
+            $_SESSION['feedback_negative'][] = 'Could\'t delete task';
+            header('location: ' . URL . 'checklist');
+        endif;
     }
 }
